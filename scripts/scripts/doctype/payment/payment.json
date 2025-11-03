@@ -1,0 +1,267 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-31 19:42:51.117879",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_details_section",
+  "customer_id",
+  "customer_name",
+  "date_of_payment",
+  "column_break_uwus",
+  "mobile_no",
+  "payment_method",
+  "payment_status",
+  "upi_section",
+  "upi_id",
+  "net_banking_section",
+  "bank_name",
+  "account_no",
+  "account_holder_name",
+  "ifsc_code",
+  "column_break_ruft",
+  "transaction_id",
+  "payment_date",
+  "amount_paid",
+  "status",
+  "debit_card_section",
+  "card_no",
+  "card_holder_name",
+  "column_break_reol",
+  "cvv_no",
+  "exp_no",
+  "credit_card_section",
+  "credit_card_no",
+  "credit_card_holder_name",
+  "column_break_hsxo",
+  "card_exp_no",
+  "card_cvv_no",
+  "amount_section",
+  "total_amount",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fetch_from": "customer_id.name1",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "default": "now",
+   "fetch_from": "customer_id.purchase_date",
+   "fieldname": "date_of_payment",
+   "fieldtype": "Datetime",
+   "label": "Date Of Payment"
+  },
+  {
+   "fieldname": "column_break_uwus",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "customer_id.mobile_no",
+   "fieldname": "mobile_no",
+   "fieldtype": "Phone",
+   "label": "Mobile No"
+  },
+  {
+   "default": "UPI",
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "UPI\nNet Banking\nDebit Card\nCredit Card"
+  },
+  {
+   "depends_on": "eval:doc.payment_method == \"UPI\"\r\n",
+   "fieldname": "upi_section",
+   "fieldtype": "Section Break",
+   "label": "UPI"
+  },
+  {
+   "fieldname": "upi_id",
+   "fieldtype": "Data",
+   "label": "UPI ID"
+  },
+  {
+   "fetch_from": "customer_id.grand_total",
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.payment_method == \"Net Banking\"",
+   "fieldname": "net_banking_section",
+   "fieldtype": "Section Break",
+   "label": "Net Banking"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Autocomplete",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "account_holder_name",
+   "fieldtype": "Data",
+   "label": "Account Holder Name"
+  },
+  {
+   "fieldname": "transaction_id",
+   "fieldtype": "Data",
+   "label": "Transaction ID"
+  },
+  {
+   "fieldname": "payment_date",
+   "fieldtype": "Date",
+   "label": "Payment Date"
+  },
+  {
+   "fieldname": "amount_paid",
+   "fieldtype": "Currency",
+   "label": "Amount Paid"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Success\nPending\nFailed"
+  },
+  {
+   "fieldname": "column_break_ruft",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "account_no",
+   "fieldtype": "Data",
+   "label": "Account No"
+  },
+  {
+   "fieldname": "ifsc_code",
+   "fieldtype": "Data",
+   "label": "IFSC Code"
+  },
+  {
+   "depends_on": "eval:doc.payment_method == \"Debit Card\"",
+   "fieldname": "debit_card_section",
+   "fieldtype": "Section Break",
+   "label": "Debit Card"
+  },
+  {
+   "fieldname": "card_no",
+   "fieldtype": "Data",
+   "label": "Card No"
+  },
+  {
+   "fieldname": "card_holder_name",
+   "fieldtype": "Data",
+   "label": "Card Holder Name"
+  },
+  {
+   "fieldname": "column_break_reol",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cvv_no",
+   "fieldtype": "Data",
+   "label": "CVV no"
+  },
+  {
+   "fieldname": "exp_no",
+   "fieldtype": "Data",
+   "label": "EXP No"
+  },
+  {
+   "depends_on": "eval:doc.payment_method == \"Credit Card\"",
+   "fieldname": "credit_card_section",
+   "fieldtype": "Section Break",
+   "label": "Credit Card"
+  },
+  {
+   "fieldname": "credit_card_no",
+   "fieldtype": "Data",
+   "label": "Credit Card No"
+  },
+  {
+   "fieldname": "credit_card_holder_name",
+   "fieldtype": "Data",
+   "label": "Credit Card Holder Name"
+  },
+  {
+   "fieldname": "column_break_hsxo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "card_exp_no",
+   "fieldtype": "Data",
+   "label": "Card EXP No"
+  },
+  {
+   "fieldname": "card_cvv_no",
+   "fieldtype": "Data",
+   "label": "Card CVV no"
+  },
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "customer_id",
+   "fieldtype": "Data",
+   "label": "Customer ID",
+   "options": "Customer List"
+  },
+  {
+   "fieldname": "amount_section",
+   "fieldtype": "Section Break",
+   "label": "Amount"
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "Pending\nPaid"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Payment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-11-03 17:54:44.655238",
+ "modified_by": "Administrator",
+ "module": "Scripts",
+ "name": "Payment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
