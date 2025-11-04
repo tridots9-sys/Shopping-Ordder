@@ -1,0 +1,230 @@
+{
+ "actions": [],
+ "allow_auto_repeat": 1,
+ "allow_copy": 1,
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "C -.#####",
+ "creation": "2025-11-04 13:31:32.197105",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_details_section",
+  "customer_name",
+  "mobile_no",
+  "bank_name",
+  "column_break_fskg",
+  "branch_name",
+  "account_no",
+  "ifsc_code",
+  "balance",
+  "credit_card_tab",
+  "credit_card_details_section",
+  "c_card_no",
+  "c_cvv",
+  "column_break_olje",
+  "c_exp_date",
+  "c_card_limit",
+  "debit_card_tab",
+  "debit_card_details_section",
+  "d_card_no",
+  "d_exp_date",
+  "column_break_uivv",
+  "d_cvv_no",
+  "d_card_limit",
+  "upi_tab",
+  "upi_details_section",
+  "upi_id",
+  "upi_id_password",
+  "column_break_cyab",
+  "upi_limit"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Phone",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Mobile_no",
+   "mask": 1,
+   "not_nullable": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Bank Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fskg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch_name",
+   "fieldtype": "Data",
+   "label": "Branch Name"
+  },
+  {
+   "fieldname": "account_no",
+   "fieldtype": "Data",
+   "label": "Account no"
+  },
+  {
+   "fieldname": "ifsc_code",
+   "fieldtype": "Data",
+   "label": "IFSC Code"
+  },
+  {
+   "fieldname": "balance",
+   "fieldtype": "Currency",
+   "label": "Balance"
+  },
+  {
+   "fieldname": "credit_card_tab",
+   "fieldtype": "Tab Break",
+   "label": "Credit Card"
+  },
+  {
+   "fieldname": "credit_card_details_section",
+   "fieldtype": "Section Break",
+   "label": "Credit Card Details"
+  },
+  {
+   "fieldname": "c_card_no",
+   "fieldtype": "Data",
+   "label": "C Card No"
+  },
+  {
+   "fieldname": "c_cvv",
+   "fieldtype": "Data",
+   "label": "C CVV"
+  },
+  {
+   "fieldname": "column_break_olje",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "c_exp_date",
+   "fieldtype": "Data",
+   "label": "C Exp Date"
+  },
+  {
+   "fieldname": "c_card_limit",
+   "fieldtype": "Data",
+   "label": "C Card Limit"
+  },
+  {
+   "fieldname": "debit_card_tab",
+   "fieldtype": "Tab Break",
+   "label": "Debit Card"
+  },
+  {
+   "fieldname": "debit_card_details_section",
+   "fieldtype": "Section Break",
+   "label": "Debit Card Details"
+  },
+  {
+   "fieldname": "d_card_no",
+   "fieldtype": "Data",
+   "label": "D card No"
+  },
+  {
+   "fieldname": "d_exp_date",
+   "fieldtype": "Data",
+   "label": "D EXP Date"
+  },
+  {
+   "fieldname": "column_break_uivv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "d_cvv_no",
+   "fieldtype": "Data",
+   "label": "D Cvv no"
+  },
+  {
+   "fieldname": "d_card_limit",
+   "fieldtype": "Data",
+   "label": "D Card Limit"
+  },
+  {
+   "fieldname": "upi_tab",
+   "fieldtype": "Tab Break",
+   "label": "UPI"
+  },
+  {
+   "fieldname": "upi_details_section",
+   "fieldtype": "Section Break",
+   "label": "UPI Details"
+  },
+  {
+   "fieldname": "upi_id",
+   "fieldtype": "Data",
+   "label": "UPI ID"
+  },
+  {
+   "fieldname": "upi_id_password",
+   "fieldtype": "Data",
+   "label": "UPI ID Password"
+  },
+  {
+   "fieldname": "column_break_cyab",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "upi_limit",
+   "fieldtype": "Data",
+   "label": "UPI Limit"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-04 15:14:33.465211",
+ "modified_by": "Administrator",
+ "module": "Scripts",
+ "name": "Customer",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

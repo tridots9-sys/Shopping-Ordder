@@ -23,6 +23,34 @@ frappe.ui.form.on("Payment", {
                 }
 
             })
+
+
         }
+
+
+    },
+    // before_save(frm){
+    //         frm.call("payments", { throw_if_missing : true})
+    //         .then(r=>{
+    //             if(r.message){
+    //                 console.log(r.message)
+    //             }
+    //         })
+        
+    // },
+
+    ifsc_code: function(frm){
+
+        frm.call("Netbanking", { throw_if_missing : true})
+        .then(r=>{
+            if(r.message){
+                frm.set_df_property("account_holder_name", "read_only", 1)
+                frm.set_df_property("branch_name", "read_only", 1)
+                frm.set_df_property("status", "read_only", 1)
+                frm.set_df_property("transaction_id", "read_only", 1)
+
+                console.log(r.message)
+            }
+        })
     }
 });

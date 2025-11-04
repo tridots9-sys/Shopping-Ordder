@@ -1,0 +1,24 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Customer List",
+  "enabled": 1,
+  "modified": "2025-11-04 11:22:06.918257",
+  "module": "Scripts",
+  "name": "Custom Button",
+  "script": "frappe.ui.form.on('Customer List',{\n    refresh(frm) {\n        \n        if(frm.doc.docstatus == 1){\n            frm.add_custom_button(\"Payment\", ()=>{\n\t\t        frappe.new_doc(\"Payment\",{\n\t\t            \"customer_id\":frm.doc.name,\n\t\t            \"customer_name\":frm.doc.name1,\n\t\t            \"mobile_no\":frm.doc.mobile_no,\n\t\t            \"total_amount\":frm.doc.grand_total\n\t\t        })\n\t\t    })\n        }\n        \n        if(!frm.is_new){\n            frm.set_intro(\"\")\n        }\n        \n\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Payment",
+  "enabled": 1,
+  "modified": "2025-11-04 11:26:00.400629",
+  "module": "Scripts",
+  "name": "Payment",
+  "script": "frappe.listview_settings['Payment'] = {\n    onload: function(listview) {\n        listview.page.btn_primary.hide()\n    }\n}",
+  "view": "List"
+ }
+]
