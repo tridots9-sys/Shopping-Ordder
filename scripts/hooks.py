@@ -251,5 +251,11 @@ fixtures = [
         "filters": [
             ["name", "in", ["Payment", "Custom Button"]]
         ]
+    },
+    {
+        "dt":"Data Import",
+        "filters": [
+            ["name", "in", ["Product Import on 2025-10-31 13:05:07.596925"]]
+        ]
     }
 ]
