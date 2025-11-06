@@ -249,7 +249,7 @@ fixtures = [
     {
         "dt": "Client Script",
         "filters": [
-            ["name", "in", ["Payment", "Custom Button"]]
+            ["name", "in", ["Payment", "Custom Button","Razor For Payment"]]
         ]
     },
     {
@@ -257,5 +257,16 @@ fixtures = [
         "filters": [
             ["name", "in", ["Product Import on 2025-10-31 13:05:07.596925"]]
         ]
+    },
+    {
+        "dt":"Dashboard",
+        "filters": [
+            ["name", "in", ["Order Section"]]
+        ]
     }
+
 ]
+app_include_js = [
+    "https://checkout.razorpay.com/v1/checkout.js"
+]
+ 

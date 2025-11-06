@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Payment", {
-    after_save(frm){
+    refresh(frm){
         // use a proper callback and frm.set_value to update the field
         setTimeout(function() {
             frm.set_value("payment_status", "Paid");
@@ -16,18 +16,28 @@ frappe.ui.form.on("Payment", {
             frm.set_df_property("card_exp_no", "read_only", 1);
             frm.set_df_property("card_cvv_no", "read_only", 1);
 
-            frm.call("change_status", { throw_if_missing : true})
-            .then(r =>{
-                if(r.message){
-                    frappe.msgprint("Payment Done")
-                }
+            // frm.call("change_status", { throw_if_missing : true})
+            // .then(r =>{
+            //     if(r.message){
+            //         frappe.msgprint("Payment Done")
+            //     }
 
-            })
+            // })
 
 
         }
-
-
+        frm.add_custom_button("Generate Bill & Send", () => {
+            frappe.call({
+                method: "scripts.scripts.doctype.payment.payment_api.send_whatsapp_bill",
+                args: { docname: frm.doc.name },
+                callback: function (r) {
+                    if (r.message) {
+                        console.table(r.message)
+                        frappe.msgprint("✅ Bill sent to customer via WhatsApp!");
+                    }
+                }
+            });
+        });
     },
     // before_save(frm){
     //         frm.call("payments", { throw_if_missing : true})
@@ -39,18 +49,28 @@ frappe.ui.form.on("Payment", {
         
     // },
 
-    ifsc_code: function(frm){
+    // ifsc_code: function(frm){
 
-        frm.call("Netbanking", { throw_if_missing : true})
-        .then(r=>{
-            if(r.message){
-                frm.set_df_property("account_holder_name", "read_only", 1)
-                frm.set_df_property("branch_name", "read_only", 1)
-                frm.set_df_property("status", "read_only", 1)
-                frm.set_df_property("transaction_id", "read_only", 1)
+    //     frm.call("Netbanking", { throw_if_missing : true})
+    //     .then(r=>{
+    //         if(r.message){
+    //             frm.set_df_property("account_holder_name", "read_only", 1)
+    //             frm.set_df_property("branch_name", "read_only", 1)
+    //             frm.set_df_property("status", "read_only", 1)
+    //             frm.set_df_property("transaction_id", "read_only", 1)
 
-                console.log(r.message)
-            }
-        })
-    }
+    //             console.log(r.message)
+    //         }
+    //     })
+    // },
+
+    // credit_card_no: function(frm){
+
+    //     frm.call("credit_card", {throw_if_missing : true})
+    //     .then(r=>{
+    //         if(r.message){
+    //             console.log(r.message)
+    //         }
+    //     })
+    // }
 });

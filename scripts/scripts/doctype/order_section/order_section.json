@@ -86,7 +86,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Customer List",
+   "options": "Order Section",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -103,10 +103,10 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-03 17:13:38.338307",
+ "modified": "2025-11-05 11:05:19.195471",
  "modified_by": "Administrator",
  "module": "Scripts",
- "name": "Customer List",
+ "name": "Order Section",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

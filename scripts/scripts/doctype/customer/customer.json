@@ -14,6 +14,7 @@
   "customer_name",
   "mobile_no",
   "bank_name",
+  "credit_card_loan_amount",
   "column_break_fskg",
   "branch_name",
   "account_no",
@@ -193,12 +194,17 @@
    "fieldname": "upi_limit",
    "fieldtype": "Data",
    "label": "UPI Limit"
+  },
+  {
+   "fieldname": "credit_card_loan_amount",
+   "fieldtype": "Currency",
+   "label": "Credit Card Loan Amount"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-04 15:14:33.465211",
+ "modified": "2025-11-05 19:02:43.745353",
  "modified_by": "Administrator",
  "module": "Scripts",
  "name": "Customer",
@@ -218,6 +224,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
  "sort_field": "creation",

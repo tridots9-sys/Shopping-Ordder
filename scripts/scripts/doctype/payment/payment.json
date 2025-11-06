@@ -49,6 +49,9 @@
    "fetch_from": "customer_id.name1",
    "fieldname": "customer_name",
    "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Customer Name"
   },
   {
@@ -56,6 +59,9 @@
    "fetch_from": "customer_id.purchase_date",
    "fieldname": "date_of_payment",
    "fieldtype": "Datetime",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Date Of Payment"
   },
   {
@@ -72,6 +78,9 @@
    "default": "UPI",
    "fieldname": "payment_method",
    "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Payment Method",
    "options": "UPI\nNet Banking\nDebit Card\nCredit Card"
   },
@@ -217,7 +226,7 @@
    "fieldname": "customer_id",
    "fieldtype": "Data",
    "label": "Customer ID",
-   "options": "Customer List"
+   "options": "Order Section"
   },
   {
    "fieldname": "amount_section",
@@ -254,8 +263,6 @@
    "depends_on": "eval:doc.ifsc_code",
    "fieldname": "branch_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Branch Name"
   }
  ],
@@ -263,7 +270,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-04 16:42:51.982794",
+ "modified": "2025-11-05 11:27:11.744561",
  "modified_by": "Administrator",
  "module": "Scripts",
  "name": "Payment",

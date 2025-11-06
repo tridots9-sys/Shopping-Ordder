@@ -2,12 +2,12 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
-  "dt": "Customer List",
+  "dt": "Order Section",
   "enabled": 1,
-  "modified": "2025-11-04 11:22:06.918257",
+  "modified": "2025-11-05 10:46:46.282128",
   "module": "Scripts",
   "name": "Custom Button",
-  "script": "frappe.ui.form.on('Customer List',{\n    refresh(frm) {\n        \n        if(frm.doc.docstatus == 1){\n            frm.add_custom_button(\"Payment\", ()=>{\n\t\t        frappe.new_doc(\"Payment\",{\n\t\t            \"customer_id\":frm.doc.name,\n\t\t            \"customer_name\":frm.doc.name1,\n\t\t            \"mobile_no\":frm.doc.mobile_no,\n\t\t            \"total_amount\":frm.doc.grand_total\n\t\t        })\n\t\t    })\n        }\n        \n        if(!frm.is_new){\n            frm.set_intro(\"\")\n        }\n        \n\n\t}\n})",
+  "script": "frappe.ui.form.on('Order Section',{\n    refresh(frm) {\n        \n        if(frm.doc.docstatus == 1){\n            frm.add_custom_button(\"Payment\", ()=>{\n\t\t        frappe.new_doc(\"Payment\",{\n\t\t            \"customer_id\":frm.doc.name,\n\t\t            \"customer_name\":frm.doc.name1,\n\t\t            \"mobile_no\":frm.doc.mobile_no,\n\t\t            \"total_amount\":frm.doc.grand_total\n\t\t        })\n\t\t    })\n        }\n        \n        if(!frm.is_new){\n            frm.set_intro(\"\")\n        }\n        \n\n\t}\n})",
   "view": "Form"
  },
  {
@@ -15,10 +15,21 @@
   "doctype": "Client Script",
   "dt": "Payment",
   "enabled": 1,
-  "modified": "2025-11-04 11:26:00.400629",
+  "modified": "2025-11-05 11:18:41.614434",
   "module": "Scripts",
   "name": "Payment",
-  "script": "frappe.listview_settings['Payment'] = {\n    onload: function(listview) {\n        listview.page.btn_primary.hide()\n    }\n}",
+  "script": "frappe.listview_settings['Payment'] = {\n    onload: function(listview) {\n        listview.page.btn_primary.hide()\n        // listview.page.btn_default.hide()\n    }\n}",
   "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Payment",
+  "enabled": 1,
+  "modified": "2025-11-06 17:20:47.616527",
+  "module": null,
+  "name": "Razor For Payment",
+  "script": "frappe.ui.form.on(\"Payment\",{\n    refresh: function(frm){\n        frm.add_custom_button(\"Pay Now\",()=>{\n            payment_method(frm)\n        })\n        \n        if (frm.doc.docstatus === 1) {\n            frm.add_custom_button(\"Generate Bill\",()=>{\n                generate_bill(frm)\n        })\n        }\n    }\n})\n\nfunction payment_method(frm){\n    let netbanking = false\n    let card = false\n    let upi = false\n    let wallet = false\n    let emi = false\n    let method = frm.doc.payment_method\n    \n    if(method == \"UPI\"){\n        upi = true\n    }\n    else if(method == \"Net Banking\"){\n        netbanking = true\n    }\n    else if(method == \"Debit Card\"){\n        card = true\n    }\n    else if(method == \"Credit Card\"){\n        card = true\n    }\n    let options = {\n        key: \"rzp_test_1DP5mmOlF5G5ag\",\n        amount:Math.round(frm.doc.total_amount * 100),\n        currency: \"INR\",\n        name: \"SSS Supermarket\",\n        description: \"Pay The Bill\",\n        method: {\n            netbanking: netbanking,\n            card: card,\n            upi: upi,\n            wallet: false,\n            emi: true\n        },\n        handler:(r)=>{\n            frappe.msgprint(`${frm.doc.total_amount} Paid Successfully`)\n            console.table(r)\n            frm.set_value(\"transaction_id\",r.razorpay_payment_id);\n            frm.set_value(\"payment_status\", \"Paid\");\n            frm.set_value(\"docstatus\", 1)\n            frm.save()\n        },\n        theme: {\n            color: \"#000000\"\n        },\n    };\n    let rzp = new Razorpay(options)\n    rzp.open()\n}\n\n// function generate_bill(frm){\n    \n    // frappe.call({\n    //     method:\"frappe.client.get\",\n    //     args: {\n    //         doctype: \"Payment\",\n    //         name: frm.doc.name\n    //     },\n    //     callback: function(r){\n    //         if(r.message){\n    //             const print_url = frappe.urllib.get_full_url(\n    //                 \"/printview?doctype=\" + encodeURIComponent(frm.doc.doctype)\n    //                 + \"&name=\" + encodeURIComponent(frm.doc.name)\n    //                 + \"&trigger_print=1\"\n    //                 + \"&format=\" + encodeURIComponent(\"Bill Format\")\n    //                 + \"&no_letterhead=0\"\n    //             );\n    //             window.open(print_url);\n    //         }\n    //     }\n    // });\n    \n//     const print_url = frappe.urllib.get_full_url(\n//         \"/printview?doctype=\" + encodeURIComponent(frm.doc.doctype)\n//         + \"&name=\" + encodeURIComponent(frm.doc.name)\n//         + \"&trigger_print=1\"\n//         + \"&format=\" + encodeURIComponent(\"Bill Format\")\n//         + \"&no_letterhead=0\"\n//     );\n\n//     // 2️⃣ Get customer phone number\n//     const phone = frm.doc.mobile_no || frm.doc.phone || \"91XXXXXXXXXX\"; // fallback if empty\n\n//     // 3️⃣ Message content\n//     const message = `Hello ${frm.doc.customer_name || \"Customer\"}, your payment of ₹${frm.doc.total_amount} was successful.\\nHere’s your bill:\\n${print_url}`;\n\n//     // 4️⃣ Create WhatsApp Web link\n//     const whatsapp_url = `https://web.whatsapp.com//${phone}?text=${encodeURIComponent(message)}`;\n\n//     // 5️⃣ Open WhatsApp\n//     window.open(whatsapp_url, \"_blank\");\n\n//     frappe.msgprint(\"📤 Bill link opened in WhatsApp Web!\");\n// }\n\n",
+  "view": "Form"
  }
 ]
